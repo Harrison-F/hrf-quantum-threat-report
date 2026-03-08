@@ -207,13 +207,69 @@
     z-index: 10;
   }
 
+  /* Prevent overscroll on mobile */
+  html, body {
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: auto;
+  }
+
   /* Mobile */
   @media (max-width: 768px) {
-    .header { padding: 10px 16px; }
+    body {
+      min-height: 100dvh;
+      overflow: hidden;
+      position: fixed;
+      width: 100%;
+    }
+
+    .header {
+      padding: 8px 12px;
+    }
+
+    .header-logo { height: 22px; }
+
     .header-title { display: none; }
-    .flipbook-wrapper { padding: 12px 4px; }
-    .nav-controls { padding: 8px 0 16px; }
+
+    .header-actions { gap: 8px; }
+
+    .btn {
+      padding: 8px 12px;
+      font-size: 11px;
+    }
+
+    .flipbook-wrapper {
+      padding: 8px 2px;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .nav-controls {
+      padding: 6px 0 12px;
+      gap: 20px;
+    }
+
+    .nav-btn {
+      width: 48px;
+      height: 48px;
+      font-size: 22px;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .page-indicator {
+      font-size: 14px;
+    }
+
     .fullscreen-hint { display: none; }
+
+    .loading-text { font-size: 13px; }
+    .loading-progress { font-size: 11px; }
+  }
+
+  /* Small phones */
+  @media (max-width: 380px) {
+    .header { padding: 6px 10px; }
+    .btn { padding: 6px 10px; font-size: 10px; }
+    .header-logo { height: 18px; }
   }
 </style>
 </head>
@@ -256,7 +312,8 @@
   pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.9.155/pdf.worker.min.mjs';
 
   const PDF_URL = 'quantum-threat-report.pdf';
-  const RENDER_SCALE = 2; // Higher = sharper
+  const isMobile = window.innerWidth <= 768;
+  const RENDER_SCALE = isMobile ? 1.5 : 2; // Lower on mobile for performance
   const progressEl = document.getElementById('loading-progress');
   const loadingEl = document.getElementById('loading');
 
@@ -299,16 +356,27 @@
 
   function calcSize() {
     const wrapperEl = document.querySelector('.flipbook-wrapper');
-    const maxW = wrapperEl.clientWidth - 32;
-    const maxH = wrapperEl.clientHeight - 16;
+    const maxW = wrapperEl.clientWidth - (isMobile ? 8 : 32);
+    const maxH = wrapperEl.clientHeight - (isMobile ? 4 : 16);
 
-    // Each page is half the flipbook width (spread view)
-    let pageW = Math.min(maxW / 2, 500);
-    let pageH = pageW * aspectRatio;
+    let pageW, pageH;
 
-    if (pageH > maxH) {
-      pageH = maxH;
-      pageW = pageH / aspectRatio;
+    if (isMobile) {
+      // Single page mode — page fills the width
+      pageW = Math.min(maxW, 500);
+      pageH = pageW * aspectRatio;
+      if (pageH > maxH) {
+        pageH = maxH;
+        pageW = pageH / aspectRatio;
+      }
+    } else {
+      // Spread mode — two pages side by side
+      pageW = Math.min(maxW / 2, 500);
+      pageH = pageW * aspectRatio;
+      if (pageH > maxH) {
+        pageH = maxH;
+        pageW = pageH / aspectRatio;
+      }
     }
 
     return { width: Math.round(pageW), height: Math.round(pageH) };
@@ -322,21 +390,21 @@
     width: size.width,
     height: size.height,
     size: 'fixed',
-    minWidth: 200,
-    maxWidth: 800,
-    minHeight: 280,
+    minWidth: isMobile ? 280 : 200,
+    maxWidth: isMobile ? 600 : 800,
+    minHeight: isMobile ? 400 : 280,
     maxHeight: 1100,
     showCover: true,
-    maxShadowOpacity: 0.35,
-    mobileScrollSupport: true,
-    swipeDistance: 30,
+    maxShadowOpacity: isMobile ? 0.2 : 0.35,
+    mobileScrollSupport: false, // Prevent scroll conflicts
+    swipeDistance: isMobile ? 15 : 30, // Easier swipe on mobile
     clickEventForward: false,
     useMouseEvents: true,
-    flippingTime: 800,
+    flippingTime: isMobile ? 600 : 800,
     startZIndex: 0,
     autoSize: true,
     drawShadow: true,
-    usePortrait: true,
+    usePortrait: isMobile, // Single page on mobile, spread on desktop
     startPage: 0
   });
 
@@ -394,7 +462,23 @@
   loadingEl.classList.add('hidden');
   setTimeout(() => loadingEl.remove(), 500);
 
-  // 7) Resize handler
+  // 7) Prevent iOS bounce/scroll on the flipbook area
+  if (isMobile) {
+    const wrapper = document.querySelector('.flipbook-wrapper');
+    wrapper.addEventListener('touchmove', (e) => {
+      e.preventDefault();
+    }, { passive: false });
+
+    // Prevent double-tap zoom
+    let lastTap = 0;
+    wrapper.addEventListener('touchend', (e) => {
+      const now = Date.now();
+      if (now - lastTap < 300) { e.preventDefault(); }
+      lastTap = now;
+    }, { passive: false });
+  }
+
+  // 8) Resize handler
   let resizeTimeout;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);
