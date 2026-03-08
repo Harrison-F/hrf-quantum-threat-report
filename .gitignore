@@ -1,0 +1,5 @@
+node_modules/
+package.json
+package-lock.json
+generate-pdf.js
+logo-base64.txt

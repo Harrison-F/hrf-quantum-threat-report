@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Quantum Threat to Bitcoin — HRF Report</title>
+<meta name="description" content="How cryptographically relevant quantum computers could threaten the financial freedom tool that dissidents and human rights defenders rely on.">
+<meta property="og:title" content="The Quantum Threat to Bitcoin">
+<meta property="og:description" content="How quantum computers could threaten Bitcoin's role as freedom money for dissidents — and what the Bitcoin community can do about it.">
+<meta property="og:image" content="https://hrf.org/wp-content/uploads/2025/10/Latest-Thumbnail-The-Quantum-Threat-to-Bitcoin-V1.png">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Quantum Threat to Bitcoin">
+<meta name="twitter:image" content="https://hrf.org/wp-content/uploads/2025/10/Latest-Thumbnail-The-Quantum-Threat-to-Bitcoin-V1.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;0,900;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+/* ======== RESET ======== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --orange:#E8792B;
+  --black:#1a1a1a;
+  --charcoal:#333;
+  --gray:#888;
+  --light-gray:#eee;
+  --warm-tan:#f5ede3;
+  --white:#fff;
+  --sans:'Source Sans 3','Source Sans Pro',-apple-system,Helvetica,sans-serif;
+  --serif:'Playfair Display',Georgia,serif;
+}
+
+html{font-size:10.5pt}
+body{font-family:var(--sans);color:var(--black);line-height:1.5;background:var(--white)}
+
+/* ======== PRINT ======== */
+@page{size:letter portrait;margin:0.65in 0.7in 0.8in 0.7in}
+@media print{
+  body{background:#fff}
+  .page{box-shadow:none;margin:0;padding:0;width:auto;min-height:auto}
+  .page-break{page-break-before:always}
+  h2,h3{page-break-after:avoid}
+  .avoid-break{page-break-inside:avoid}
+  p{orphans:3;widows:3}
+  .cover-page{margin:-0.65in -0.7in;padding:0;width:calc(100% + 1.4in);min-height:calc(100% + 1.45in)}
+  .full-bleed-img{margin:-0.65in -0.7in;width:calc(100% + 1.4in);min-height:calc(100% + 1.45in)}
+}
+
+/* ======== SCREEN PREVIEW ======== */
+@media screen{
+  body{background:#d0d0d0}
+  .page{width:8.5in;min-height:11in;margin:0.4in auto;padding:0.65in 0.7in 0.8in 0.7in;background:#fff;box-shadow:0 2px 16px rgba(0,0,0,.15)}
+  .cover-page{padding:0!important}
+  .full-bleed-page{padding:0!important}
+}
+
+/* ======== FOOTER (every content page) ======== */
+.page-footer{
+  position:relative;
+  margin-top:auto;
+  padding-top:0.8em;
+  display:flex;
+  align-items:center;
+  font-family:var(--sans);
+  font-size:0.7em;
+  color:var(--gray);
+  letter-spacing:0.06em;
+}
+.page-footer.left-page{justify-content:flex-start}
+.page-footer.right-page{justify-content:flex-end}
+.footer-num{font-weight:700;color:var(--charcoal)}
+.footer-divider{
+  display:inline-block;
+  width:1px;
+  height:14px;
+  background:var(--orange);
+  margin:0 10px;
+  vertical-align:middle;
+}
+.footer-text{
+  text-transform:uppercase;
+  letter-spacing:0.14em;
+  font-weight:600;
+  font-size:0.95em;
+}
+
+/* ======== TYPOGRAPHY ======== */
+h1,h2,h3,h4{line-height:1.15}
+h1{font-family:var(--sans);font-weight:900;font-size:2.8em;color:var(--black)}
+h2{font-family:var(--sans);font-weight:700;font-size:1.7em;color:var(--black);margin-bottom:0.5em}
+h3{font-family:var(--sans);font-weight:700;font-size:1.2em;color:var(--black);margin-bottom:0.4em}
+h4{font-family:var(--sans);font-weight:700;font-size:0.75em;text-transform:uppercase;letter-spacing:0.14em;color:var(--orange);margin-bottom:0.6em}
+p{margin-bottom:0.85em;font-size:1em}
+
+.orange-rule{width:50px;height:3px;background:var(--orange);border:none;margin:0.8em 0 1.2em 0}
+.orange-rule-thin{width:100%;height:1px;background:var(--orange);border:none;opacity:0.3;margin:1.2em 0}
+
+/* ======== COVER ======== */
+.cover-page{
+  display:flex;flex-direction:column;justify-content:flex-start;
+  min-height:11in;position:relative;overflow:hidden;color:#fff;
+  background:#111;
+}
+.cover-bg{
+  position:absolute;inset:0;
+  background:url('https://hrf.org/wp-content/uploads/2025/10/Latest-Thumbnail-The-Quantum-Threat-to-Bitcoin-V1.png') center/cover no-repeat;
+  opacity:0.55;
+}
+.cover-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 50%,rgba(0,0,0,0.5) 100%);
+}
+.cover-title-block{
+  position:absolute;top:8%;right:6%;text-align:left;z-index:2;
+}
+.cover-title-block h1{
+  font-family:var(--sans);font-weight:900;font-size:4.5em;color:#fff;line-height:1.05;
+}
+.cover-ff-logo{
+  position:absolute;bottom:5%;right:5%;z-index:2;height:60px;
+}
+
+/* ======== FULL-BLEED IMAGE PAGE ======== */
+.full-bleed-page{position:relative;min-height:11in;overflow:hidden}
+.full-bleed-page img.hero-photo{
+  width:100%;height:100%;object-fit:cover;position:absolute;inset:0;
+}
+.full-bleed-page .page-footer{
+  position:absolute;bottom:20px;left:24px;right:24px;z-index:2;
+}
+
+/* ======== TABLE OF CONTENTS ======== */
+.toc-title{
+  font-family:var(--serif);font-style:italic;font-size:2em;color:var(--orange);
+  margin-bottom:1.2em;font-weight:400;
+}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 2.5em}
+.toc-entry{
+  display:flex;justify-content:space-between;align-items:baseline;
+  padding:0.65em 0;border-bottom:1px solid var(--warm-tan);
+}
+.toc-entry-title{font-weight:600;font-size:0.95em;color:var(--black)}
+.toc-entry-page{font-weight:600;font-size:0.95em;color:var(--charcoal);min-width:24px;text-align:right}
+
+/* ======== CONTENT LAYOUT ======== */
+.content-page{display:flex;flex-direction:column}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.8em}
+
+/* ======== STAT BLOCKS ======== */
+.stat-number{font-family:var(--sans);font-weight:900;font-size:3.4em;color:var(--orange);line-height:1}
+.stat-label{font-family:var(--sans);font-weight:700;font-size:0.72em;text-transform:uppercase;letter-spacing:0.1em;color:var(--charcoal);line-height:1.4;margin-top:0.2em}
+.stat-row{display:flex;gap:2em;margin:1.4em 0;padding:1.2em 0;border-top:1px solid var(--light-gray);border-bottom:1px solid var(--light-gray)}
+.stat-block{flex:1}
+.stat-inline{border-left:4px solid var(--orange);padding:1em 1.2em;margin:1.2em 0;background:var(--warm-tan)}
+.stat-inline .stat-number{font-size:2.2em}
+
+/* ======== PULL QUOTES ======== */
+.pull-quote{
+  position:relative;padding:1.5em 0 1.5em 0;margin:1.4em 0;
+  border-top:1px solid var(--orange);
+}
+.pull-quote::before{
+  content:'\201C';position:absolute;top:0.55em;left:0;
+  font-family:var(--serif);font-size:3.5em;color:var(--orange);line-height:1;
+}
+.pull-quote blockquote{
+  font-family:var(--serif);font-style:italic;font-size:1.15em;
+  line-height:1.55;color:var(--charcoal);margin:0;padding-left:2em;
+}
+.pull-quote .attribution{
+  font-family:var(--sans);font-style:normal;font-size:0.75em;font-weight:700;
+  text-transform:uppercase;letter-spacing:0.08em;color:var(--orange);
+  margin-top:0.6em;padding-left:2em;display:block;
+}
+
+/* ======== KEY FINDINGS ======== */
+.key-findings{background:var(--black);color:#fff;padding:1.8em;margin:1.4em 0}
+.key-findings h3{color:var(--orange);font-size:0.75em;text-transform:uppercase;letter-spacing:0.14em;margin-bottom:0.8em}
+.key-findings ul{list-style:none;padding:0}
+.key-findings li{padding:0.55em 0 0.55em 1.4em;position:relative;border-bottom:1px solid rgba(255,255,255,.1);line-height:1.5;font-size:0.95em}
+.key-findings li:last-child{border-bottom:none}
+.key-findings li::before{content:'';position:absolute;left:0;top:0.95em;width:7px;height:7px;background:var(--orange);border-radius:50%}
+
+/* ======== CHARTS ======== */
+.chart-container{margin:1.4em 0;padding:1.4em;background:var(--warm-tan)}
+.chart-title{font-weight:700;font-size:0.75em;text-transform:uppercase;letter-spacing:0.1em;color:var(--charcoal);margin-bottom:1em}
+.chart-source{font-size:0.7em;color:var(--gray);margin-top:0.6em;font-style:italic}
+
+/* ======== CALLOUT BOX ======== */
+.callout{border:2px solid var(--orange);padding:1.3em;margin:1.4em 0}
+.callout h4{margin-bottom:0.4em}
+.callout p{margin-bottom:0}
+
+/* ======== COMPARISON TABLE ======== */
+.comparison-table{width:100%;border-collapse:collapse;margin:1em 0;font-size:0.9em}
+.comparison-table th{background:var(--charcoal);color:#fff;padding:0.6em 0.8em;text-align:left;font-weight:600;font-size:0.8em;text-transform:uppercase;letter-spacing:0.08em}
+.comparison-table td{padding:0.55em 0.8em;border-bottom:1px solid var(--light-gray);vertical-align:top}
+.comparison-table tr:nth-child(even) td{background:var(--warm-tan)}
+
+/* ======== UTILITIES ======== */
+.mb-0{margin-bottom:0}.mt-1{margin-top:0.6em}.mt-2{margin-top:1.2em}
+.text-orange{color:var(--orange)}.text-small{font-size:0.85em}.text-gray{color:var(--gray)}
+
+/* ======== MOBILE ======== */
+@media screen and (max-width:768px){
+  html{font-size:9.5pt}
+  body{background:var(--white)}
+  .page{width:100%!important;min-height:auto!important;margin:0!important;padding:1.5em 1.2em 2em!important;box-shadow:none!important;border-bottom:1px solid #e0e0e0}
+  .cover-page{min-height:100vh!important;min-height:100dvh!important;padding:0!important}
+  .cover-title-block{top:auto;bottom:15%;right:5%;left:5%}
+  .cover-title-block h1{font-size:2.6em}
+  .cover-ff-logo{height:40px;bottom:3%;right:4%}
+  .full-bleed-page{min-height:60vh!important}
+  .toc-grid{grid-template-columns:1fr}
+  .two-col{grid-template-columns:1fr!important;gap:1em!important}
+  .stat-row{flex-direction:column;gap:0.5em}
+  .stat-number{font-size:2.4em}
+  .pull-quote blockquote{font-size:1em}
+  h1{font-size:2em}h2{font-size:1.4em}
+  .chart-container{overflow-x:auto}
+  .chart-container svg{min-width:380px}
+  .comparison-table{font-size:0.78em}
+  .page-footer{font-size:0.6em}
+}
+@media screen and (max-width:480px){
+  .cover-title-block h1{font-size:2em}
+  .stat-number{font-size:2em}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== PAGE 1: COVER ===== -->
+<div class="page cover-page">
+  <div class="cover-bg"></div>
+  <div class="cover-overlay"></div>
+  <div class="cover-title-block">
+    <h1>The<br>Quantum<br>Threat to<br>Bitcoin</h1>
+  </div>
+  <img class="cover-ff-logo" src="financial-freedom-logo.jpg" alt="Financial Freedom">
+</div>
+
+<!-- ===== PAGE 2: FULL-BLEED IMAGE ===== -->
+<div class="page full-bleed-page page-break">
+  <img class="hero-photo" src="https://hrf.org/wp-content/uploads/2025/10/Latest-Thumbnail-The-Quantum-Threat-to-Bitcoin-V1.png" alt="The Quantum Threat to Bitcoin">
+  <div class="page-footer left-page" style="color:rgba(255,255,255,.7)">
+    <span class="footer-num" style="color:#fff">2</span>
+    <span class="footer-divider"></span>
+    <span class="footer-text">Financial Freedom</span>
+  </div>
+</div>
+
+<!-- ===== PAGE 3: TABLE OF CONTENTS ===== -->
+<div class="page content-page page-break">
+  <div style="padding-top:1.5em">
+    <div class="toc-title">Table of Contents</div>
+    <div class="toc-grid">
+      <div>
+        <div class="toc-entry"><span class="toc-entry-title">Executive Summary</span><span class="toc-entry-page">4</span></div>
+        <div class="toc-entry"><span class="toc-entry-title">Bitcoin as a Human Rights Tool</span><span class="toc-entry-page">5</span></div>
+        <div class="toc-entry"><span class="toc-entry-title">The Current State of Quantum Computing</span><span class="toc-entry-page">6</span></div>
+        <div class="toc-entry"><span class="toc-entry-title">Bitcoin's Quantum Threat Vectors</span><span class="toc-entry-page">7</span></div>
+        <div class="toc-entry"><span class="toc-entry-title">Short-Range Attacks</span><span class="toc-entry-page">8</span></div>
+      </div>
+      <div>
+        <div class="toc-entry"><span class="toc-entry-title">Infrastructural Risks</span><span class="toc-entry-page">8</span></div>
+        <div class="toc-entry"><span class="toc-entry-title">Quantum-Resistant Signatures</span><span class="toc-entry-page">9</span></div>
+        <div class="toc-entry"><span class="toc-entry-title">Education &amp; Design Upgrades</span><span class="toc-entry-page">10</span></div>
+        <div class="toc-entry"><span class="toc-entry-title">The Consensus Challenge</span><span class="toc-entry-page">11</span></div>
+        <div class="toc-entry"><span class="toc-entry-title">Burn, Steal, Hourglass</span><span class="toc-entry-page">12</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer right-page" style="margin-top:auto">
+    <span class="footer-text">The Quantum Threat to Bitcoin</span>
+    <span class="footer-divider"></span>
+    <span class="footer-num">3</span>
+  </div>
+</div>
+
+<!-- ===== PAGE 4: EXECUTIVE SUMMARY ===== -->
+<div class="page content-page page-break">
+  <h4>Executive Summary</h4>
+  <h2>A Human Rights Imperative</h2>
+  <hr class="orange-rule">
+
+  <p>Bitcoin is a financial lifeline for dissidents resisting authoritarian regimes. The rise of cryptographically relevant quantum computers (CRQCs) with the ability to crack Bitcoin's underlying cryptography could threaten the network's security foundations. This month, a team of Google researchers published findings that represent a quantum computing breakthrough: an algorithm enabled a quantum computer to carry out operations <strong>13,000 times faster</strong> than a classical supercomputer.</p>
+
+  <p>While quantum computing remains largely theoretical, experts suggest that CRQCs could emerge within the next five years. CRQCs could put millions of bitcoin stored in early address formats at risk, and could endanger the wider trust that underpins Bitcoin.</p>
+
+  <div class="key-findings">
+    <h3>Key Findings</h3>
+    <ul>
+      <li><strong style="color:var(--orange)">1.72 million bitcoin (~$188 billion)</strong> in very early address types thought to be potentially dormant or lost will be highly vulnerable to long-range quantum attacks.</li>
+      <li><strong style="color:var(--orange)">An additional 4.49 million bitcoin (~$495 billion)</strong> are vulnerable to long-range quantum attacks, but owners would be able to secure them by moving them to quantum-secure address types.</li>
+      <li>Preparing Bitcoin for a post-quantum world is a <strong style="color:var(--orange)">human rights imperative</strong>. If we don't, dissidents and activists would no longer be able to safely use the freedom money they increasingly rely on.</li>
+    </ul>
+  </div>
+
+  <p>Post-quantum cryptography offers solutions to help protect active Bitcoin users, but migration to quantum attack-resistant addresses will require years of technical research, coordination, and global consensus in a decentralized and ideologically divided ecosystem.</p>
+
+  <p>The threat of these quantum attacks has sparked technical, political, and moral debates. One is the "burn or steal" dilemma: whether to do nothing and allow attackers to "steal" funds sitting in early address formats, or "burn" these funds and make them unspendable.</p>
+
+  <p>Drawing on six months of discussions with experts in the Bitcoin field, this report explores the risks of CRQCs for dissidents and others using Bitcoin for financial freedom. This effort would not have been possible without the insights shared by presenters at the Presidio Bitcoin Quantum Summit and by a recent paper on the topic from Chaincode Labs. Many thanks to HRF Bitcoin Technical Lead, Alex Li, who drove the primary research in this report.</p>
+
+  <div class="page-footer left-page">
+    <span class="footer-num">4</span>
+    <span class="footer-divider"></span>
+    <span class="footer-text">Financial Freedom</span>
+  </div>
+</div>
+
+<!-- ===== PAGE 5: BITCOIN AS HUMAN RIGHTS TOOL ===== -->
+<div class="page content-page page-break">
+  <h4>Context</h4>
+  <h2>Bitcoin as a Human Rights Tool</h2>
+  <hr class="orange-rule">
+
+  <p>Bitcoin is a powerful tool for safeguarding human rights, promoting financial freedom, and resisting authoritarian control. Tyrannical governments frequently manipulate and surveil their currencies, and they seek to silence their critics by confiscating property and freezing bank accounts. Dissidents, human rights defenders, journalists, and non-profit organizations operating under dictatorship face enormous obstacles just to receive donations and pay their bills. HRF's Financial Freedom program supports the expansion of Bitcoin as a tool for activists facing financial repression: <strong>money that dictators can't stop.</strong></p>
+
+  <div class="pull-quote">
+    <blockquote>If CRQCs emerge before Bitcoin's cryptographic foundations are upgraded, activists who rely on Bitcoin for secure donations, private savings, and uncensored transactions would find their privacy and safety compromised.</blockquote>
+  </div>
+
+  <p>Quantum threats to Bitcoin's classical cryptography are still years away. However, if CRQCs emerge before Bitcoin's cryptographic foundations are upgraded, activists who rely on Bitcoin for secure donations, private savings, and uncensored transactions would find their privacy and safety compromised and dictators might find ways to steal or stop their money.</p>
+
+  <p>Making Bitcoin quantum-proof poses political and social challenges. Bitcoin is not like a standard software system: its decentralization means that any upgrade requires coordination and consensus among a diverse and divided user base. After undergoing scientific peer review and extensive testing, any change to Bitcoin's cryptographic signature schemes will also require widespread education for users, developers, node operators, and miners.</p>
+
+  <p>The Bitcoin community must also consider the 1.72 million bitcoin held in early addresses that will be most vulnerable to attacks from CRQCs. Proposed changes to the base protocol have already sparked huge debates in Bitcoin's history over trade-offs between performance, privacy, and backward compatibility.</p>
+
+  <div class="stat-row">
+    <div class="stat-block">
+      <div class="stat-number">13,000×</div>
+      <div class="stat-label">Faster than a classical supercomputer — Google's quantum breakthrough</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-number">5–20</div>
+      <div class="stat-label">Years — estimated timeline before CRQCs could emerge</div>
+    </div>
+  </div>
+
+  <div class="page-footer right-page">
+    <span class="footer-text">The Quantum Threat to Bitcoin</span>
+    <span class="footer-divider"></span>
+    <span class="footer-num">5</span>
+  </div>
+</div>
+
+<!-- ===== PAGE 6: CURRENT STATE OF QUANTUM COMPUTING ===== -->
+<div class="page content-page page-break">
+  <h4>Technical Landscape</h4>
+  <h2>The Current State of Quantum Computing</h2>
+  <hr class="orange-rule">
+
+  <p>Quantum computers exist today, but they remain years away from achieving the scale, stability, and precision required to threaten Bitcoin's cryptography. Even with recent breakthroughs, experts remain divided over whether CRQCs with the capabilities to break Bitcoin's security will ever emerge. While some Bitcoin experts emphasize that incremental quantum breakthroughs will provide time to implement solutions, some quantum computing pioneers have cautioned that sudden advances could accelerate the timeline.</p>
+
+  <p>At this year's Presidio Bitcoin Quantum Summit, a convening of quantum physicists, Bitcoin Core developers, cryptographers, wallet engineers, miners, and open-source educators provided insight into the evolving views on CRQCs among experts.</p>
+
+  <div class="pull-quote">
+    <blockquote>Quantum computing is real. But there are so many things to do. You don't need to worry too much about it, but at the same time, probably it's not a good idea to ignore it… Five to ten years is not a crazy number.</blockquote>
+    <span class="attribution">— Sho Suigara, CEO of Blocq</span>
+  </div>
+
+  <!-- POLL SHIFT CHART -->
+  <div class="chart-container">
+    <div class="chart-title">Presidio Bitcoin Quantum Summit — Expert Opinion Shift</div>
+    <svg viewBox="0 0 500 195" style="max-width:100%;height:auto">
+      <text x="10" y="22" font-family="Source Sans 3,sans-serif" font-size="9" fill="#888" font-weight="700" text-transform="uppercase" letter-spacing="0.5">UNSURE IF CRQCs WILL POSE A THREAT</text>
+      <rect x="10" y="30" width="175" height="22" fill="#E8792B" rx="2"/>
+      <text x="16" y="45" font-family="Source Sans 3,sans-serif" font-size="11" fill="#fff" font-weight="700">25%</text>
+      <text x="55" y="45" font-family="Source Sans 3,sans-serif" font-size="10" fill="rgba(255,255,255,.8)">Before Summit</text>
+      <rect x="10" y="56" width="56" height="22" fill="#333" rx="2"/>
+      <text x="16" y="71" font-family="Source Sans 3,sans-serif" font-size="11" fill="#fff" font-weight="700">8%</text>
+      <text x="74" y="71" font-family="Source Sans 3,sans-serif" font-size="10" fill="#888">After Summit</text>
+      <text x="200" y="55" font-family="Source Sans 3,sans-serif" font-size="18" fill="#E8792B" font-weight="900">↓ 17 pts</text>
+
+      <text x="10" y="105" font-family="Source Sans 3,sans-serif" font-size="9" fill="#888" font-weight="700">BELIEVE CRQCs WILL ARRIVE IN 5–20 YEARS</text>
+      <rect x="10" y="112" width="245" height="22" fill="rgba(232,121,43,.3)" rx="2"/>
+      <text x="16" y="127" font-family="Source Sans 3,sans-serif" font-size="11" fill="#333" font-weight="700">49%</text>
+      <text x="55" y="127" font-family="Source Sans 3,sans-serif" font-size="10" fill="#666">Before Summit</text>
+      <rect x="10" y="138" width="345" height="22" fill="#E8792B" rx="2"/>
+      <text x="16" y="153" font-family="Source Sans 3,sans-serif" font-size="11" fill="#fff" font-weight="700">69%</text>
+      <text x="55" y="153" font-family="Source Sans 3,sans-serif" font-size="10" fill="rgba(255,255,255,.8)">After Summit</text>
+      <text x="370" y="150" font-family="Source Sans 3,sans-serif" font-size="18" fill="#E8792B" font-weight="900">↑ 20 pts</text>
+    </svg>
+    <div class="chart-source">Source: Presidio Bitcoin Quantum Summit attendee polling</div>
+  </div>
+
+  <p>At the outset, 25% of attendees were unsure whether CRQCs would ever pose a meaningful threat. After two days of intensive discussion, uncertainty dropped to just 8%. The share who believed CRQCs would arrive in 5 to 20 years jumped from 49% to 69%.</p>
+
+  <div class="page-footer left-page">
+    <span class="footer-num">6</span>
+    <span class="footer-divider"></span>
+    <span class="footer-text">Financial Freedom</span>
+  </div>
+</div>
+
+<!-- ===== PAGE 7: THREAT VECTORS ===== -->
+<div class="page content-page page-break">
+  <h4>Threat Analysis</h4>
+  <h2>Bitcoin's Quantum Threat Vectors</h2>
+  <hr class="orange-rule">
+
+  <p>Not all bitcoin will be equally vulnerable to quantum attacks from a CRQC. Quantum threats fall into two main categories: <strong>long-range</strong> and <strong>short-range attacks</strong>, each exploiting different weaknesses in the exposure of public keys.</p>
+
+  <!-- DONUT CHART -->
+  <div class="chart-container avoid-break">
+    <div class="chart-title">Bitcoin Vulnerability to Long-Range Quantum Attacks</div>
+    <svg viewBox="0 0 460 220" style="max-width:100%;height:auto">
+      <g transform="translate(115,110)">
+        <circle cx="0" cy="0" r="80" fill="none" stroke="#e8e4df" stroke-width="30"/>
+        <circle cx="0" cy="0" r="80" fill="none" stroke="rgba(232,121,43,.5)" stroke-width="30" stroke-dasharray="107.5 395" stroke-dashoffset="0" transform="rotate(-90)"/>
+        <circle cx="0" cy="0" r="80" fill="none" stroke="#E8792B" stroke-width="30" stroke-dasharray="41.2 461.3" stroke-dashoffset="-107.5" transform="rotate(-90)"/>
+        <text x="0" y="-6" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-weight="900" font-size="24" fill="#1a1a1a">~21M</text>
+        <text x="0" y="12" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" fill="#888">Total BTC Supply</text>
+      </g>
+      <g transform="translate(235,40)">
+        <rect x="0" y="0" width="12" height="12" fill="#E8792B" rx="1"/>
+        <text x="20" y="11" font-family="Source Sans 3,sans-serif" font-size="11" font-weight="700" fill="#333">1.72M BTC (~$188B)</text>
+        <text x="20" y="26" font-family="Source Sans 3,sans-serif" font-size="9.5" fill="#888">Dormant / Lost — Highly Vulnerable</text>
+        <rect x="0" y="46" width="12" height="12" fill="rgba(232,121,43,.5)" rx="1"/>
+        <text x="20" y="57" font-family="Source Sans 3,sans-serif" font-size="11" font-weight="700" fill="#333">4.49M BTC (~$495B)</text>
+        <text x="20" y="72" font-family="Source Sans 3,sans-serif" font-size="9.5" fill="#888">Active — Can Migrate to Quantum-Safe</text>
+        <rect x="0" y="92" width="12" height="12" fill="#e8e4df" rx="1"/>
+        <text x="20" y="103" font-family="Source Sans 3,sans-serif" font-size="11" font-weight="700" fill="#333">~14.8M BTC</text>
+        <text x="20" y="118" font-family="Source Sans 3,sans-serif" font-size="9.5" fill="#888">Not Currently Vulnerable</text>
+      </g>
+    </svg>
+  </div>
+
+  <h3 class="mt-1" style="color:var(--orange)">Long-Range Attacks</h3>
+  <p>In a long-range attack, a quantum adversary targets bitcoin whose public keys are stored in older address types or in re-used addresses. Approximately <strong>6.51 million bitcoin</strong> (worth more than <strong>$718 billion</strong>), representing almost a third of total supply, is vulnerable.</p>
+
+  <p>Active users with funds in older or reused addresses can protect their funds by moving bitcoin to a new quantum-safe address. While this migration will necessitate extensive development and user education, it will secure the majority (4.49 million) of the estimated bitcoin at risk.</p>
+
+  <p>But for the remaining <strong>1.72 million bitcoin</strong> ($188 billion), for which owners' private keys are thought to be no longer accessible, no migration would occur. Satoshi's estimated 1.1 million BTC (worth over $130 billion), for example, reside in pay-to-public-key (P2PK) addresses with exposed public keys.</p>
+
+  <div class="page-footer right-page">
+    <span class="footer-text">The Quantum Threat to Bitcoin</span>
+    <span class="footer-divider"></span>
+    <span class="footer-num">7</span>
+  </div>
+</div>
+
+<!-- ===== PAGE 8: SHORT-RANGE + INFRASTRUCTURE ===== -->
+<div class="page content-page page-break">
+  <h3 style="color:var(--orange)">Short-Range Attacks</h3>
+  <hr class="orange-rule">
+
+  <p>Short-range quantum attacks would exploit the brief window between the broadcast and confirmation of a Bitcoin transaction. When a user spends bitcoin, the transaction reveals the public key. In a quantum world, a CRQC could intercept an unconfirmed transaction, derive the corresponding private key in real time, and broadcast a conflicting transaction redirecting the funds.</p>
+
+  <div class="callout avoid-break">
+    <h4>All Bitcoin Users at Risk</h4>
+    <p>All Bitcoin will be vulnerable to short-range attacks during transactions until a post-quantum cryptographic signature scheme is implemented. Attackers will likely prioritize long-range attacks due to the quantity of vulnerable bitcoin and the higher likelihood of success.</p>
+  </div>
+
+  <div class="pull-quote">
+    <blockquote>Someone is going to transition through this phase transition, and it's going to come just as fast as AI came and hit people in the face.</blockquote>
+    <span class="attribution">— Terry Rudolph, CEO of PsiQuantum</span>
+  </div>
+
+  <hr class="orange-rule-thin">
+
+  <h4 class="mt-2">Vulnerabilities</h4>
+  <h2>Infrastructural Risks</h2>
+  <hr class="orange-rule">
+
+  <p>Modern Bitcoin infrastructure introduces another underappreciated quantum vulnerability. Most popular self-custodial and multi-signature wallets, wallet companion software, and accounting tools store users' public keys to calculate balances and generate wallets. Many users rely on third-party apps to view their balances. If these companies are hacked, attackers could potentially steal users' funds in a CRQC world.</p>
+
+  <p>This extends the threat surface well beyond on-chain addresses. Hardware wallets must adapt to slower computations and bulkier keys. Accounting platforms, custody providers, and financial institutions will need to retool their systems. Multisig coordination, watch-only setups, and automated workflows will all need reevaluation.</p>
+
+  <div class="page-footer left-page">
+    <span class="footer-num">8</span>
+    <span class="footer-divider"></span>
+    <span class="footer-text">Financial Freedom</span>
+  </div>
+</div>
+
+<!-- ===== PAGE 9: QUANTUM-RESISTANT SIGNATURES ===== -->
+<div class="page content-page page-break">
+  <h4>Solutions</h4>
+  <h2>Preparing Bitcoin for the Quantum Era</h2>
+  <hr class="orange-rule">
+
+  <h3>Quantum-Resistant Signature Schemes</h3>
+  <p>Integrating quantum-resistant signature schemes represents the only durable solution to CRQC attacks on Bitcoin. There are two distinct proven approaches:</p>
+
+  <div class="two-col" style="margin:1.4em 0">
+    <div style="padding:1.2em;border-top:3px solid var(--orange);background:var(--warm-tan)">
+      <h4 style="font-size:0.8em">Lattice-Based</h4>
+      <p class="text-small">More compact; supports multisig, key aggregation, and deterministic key derivation — features useful to human rights defenders.</p>
+      <p class="text-small text-gray mb-0">Introduces new cryptographic assumptions that must be carefully vetted.</p>
+      <div style="text-align:center;margin-top:1em">
+        <span style="font-family:var(--sans);font-weight:900;font-size:2.8em;color:var(--orange)">10×</span>
+        <br><span class="text-small text-gray">larger than current signatures</span>
+      </div>
+      <p class="text-small mt-1"><strong>Examples:</strong> CRYSTALS-Dilithium 44, FALCON 512</p>
+    </div>
+    <div style="padding:1.2em;border-top:3px solid var(--charcoal);background:var(--warm-tan)">
+      <h4 style="font-size:0.8em;color:var(--charcoal)">Hash-Based</h4>
+      <p class="text-small">Most mature post-quantum option with proven cryptographic foundations.</p>
+      <p class="text-small text-gray mb-0">Larger signature sizes make key aggregation and standard multisig more complex.</p>
+      <div style="text-align:center;margin-top:1em">
+        <span style="font-family:var(--sans);font-weight:900;font-size:2.8em;color:var(--charcoal)">38×</span>
+        <br><span class="text-small text-gray">larger than current signatures</span>
+      </div>
+      <p class="text-small mt-1"><strong>Examples:</strong> SPHINCS+, XMSS, Lamport</p>
+    </div>
+  </div>
+
+  <p>These dramatic size increases would significantly reduce transactions per block, decreasing throughput and increasing storage and bandwidth demands on full nodes. Any effort to increase blocksize or adjust the witness discount to accommodate larger signatures is likely to divide the community.</p>
+
+  <div class="stat-inline avoid-break">
+    <h4 style="margin-bottom:0.3em">BIP 360</h4>
+    <p class="mb-0">Bitcoin Improvement Proposal 360 is <strong>signature scheme-agnostic</strong> — it makes taproot addresses more quantum-resistant and provides a flexible framework to accommodate a variety of post-quantum algorithms.</p>
+  </div>
+
+  <div class="chart-source">Source: Bitcoin and Quantum Computing: Current Status and Future Directions by Chaincode Labs</div>
+
+  <div class="page-footer right-page">
+    <span class="footer-text">The Quantum Threat to Bitcoin</span>
+    <span class="footer-divider"></span>
+    <span class="footer-num">9</span>
+  </div>
+</div>
+
+<!-- ===== PAGE 10: EDUCATION & DESIGN ===== -->
+<div class="page content-page page-break">
+  <h4>Implementation</h4>
+  <h2>Upgrades to Bitcoin Education &amp; Design</h2>
+  <hr class="orange-rule">
+
+  <p>Upgrading Bitcoin to withstand quantum threats is as much a human challenge as a cryptographic one. Any successful soft fork will necessitate user education, thoughtful UI design, and coordination across a global ecosystem of users, developers, hardware manufacturers, node operators, and civil society.</p>
+
+  <p>Wallets and user interfaces are tightly bound to the current elliptic curve cryptographic model. Quantum-resistant algorithms would introduce much larger signature sizes, slower signing speeds, and more complex verification paths. These fundamentally change how Bitcoin wallets must operate.</p>
+
+  <div class="pull-quote">
+    <blockquote>Sufficiently powerful quantum computers (and other ECDLP breaks) are hypothetical, and if they happen, there will likely be a long series of incremental breakthroughs that give us time for more fundamental solutions.</blockquote>
+    <span class="attribution">— Pieter Wuille, Bitcoin core contributor</span>
+  </div>
+
+  <p>Hardware wallets must adapt to slower computations and bulkier keys while preserving the seamless experience users expect. This necessitates an entirely new approach to hierarchical key derivation, backups, and recovery. Accounting platforms, custody providers, and financial institutions will need to retool their systems.</p>
+
+  <p>The need for education about quantum threats is even more pressing. Many Bitcoin users remain unaware that their coins may eventually be vulnerable to long-range quantum attacks due to public key exposure. This includes coins protected by legacy P2PK scripts and coins at reused addresses. Encouraging users to migrate to quantum-safe outputs, especially when the threat remains abstract, will be difficult.</p>
+
+  <p>Developers face the task of balancing system complexity and security with usability. For Bitcoin to remain a reliable tool for human rights and financial freedom in the quantum era, its upgrades must be <strong>inclusive, accessible, and resilient</strong>.</p>
+
+  <div class="page-footer left-page">
+    <span class="footer-num">10</span>
+    <span class="footer-divider"></span>
+    <span class="footer-text">Financial Freedom</span>
+  </div>
+</div>
+
+<!-- ===== PAGE 11: CONSENSUS CHALLENGE ===== -->
+<div class="page content-page page-break">
+  <h4>Governance</h4>
+  <h2>The Challenge of Decentralized Consensus</h2>
+  <hr class="orange-rule">
+
+  <p>Because Bitcoin has no central authority to enforce upgrades, every soft fork depends on voluntary adoption, consensus, and grassroots coordination. Introducing signature schemes that increase transaction sizes by 10 times or more will trigger debates about block space, throughput, and scalability.</p>
+
+  <p>Previous improvements to the Bitcoin network have taken years to reach widespread adoption, even for upgrades like SegWit that decreased transaction fees. Convincing a diverse, global user base to prepare for a still-hypothetical quantum future will be even harder.</p>
+
+  <div class="callout avoid-break">
+    <h4>What a Successful Quantum Upgrade Requires</h4>
+    <p>A quantum-resilient soft fork must be <strong>socially durable</strong> as well as technically correct. Upgrades must provide clear benefits, usable defaults, and migration tools that reduce the burden on everyday users. Changes must be designed with the understanding that consensus is slow, fragile, and precious. Above all, a soft fork must remain faithful to Bitcoin's underlying principles: <strong>privacy, decentralization, and freedom from coercion</strong>.</p>
+  </div>
+
+  <hr class="orange-rule-thin">
+
+  <h4 class="mt-2">The Dilemma</h4>
+  <h2>Burn, Steal, Hourglass</h2>
+  <hr class="orange-rule">
+
+  <p>To protect the 1.72 million dormant bitcoin from long-range attack, some in the Bitcoin community advocate for a <strong>"burn"</strong> — rendering quantum-vulnerable bitcoin unspendable after a migration window.</p>
+
+  <p>Advocates argue this would protect Bitcoin's monetary integrity, prevent destabilizing wealth redistribution, and reinforce the principle that possession through cryptographic theft is not valid ownership. Others worry that the theft of millions of bitcoin could undermine the value of the currency for all holders.</p>
+
+  <p>This debate cuts to the heart of Bitcoin's values: decentralization, individual sovereignty, immutability, and property rights.</p>
+
+  <div class="two-col avoid-break" style="margin-top:1em">
+    <div style="text-align:center;padding:1.2em;background:var(--warm-tan)">
+      <div style="font-size:2em;margin-bottom:0.3em">🔥</div>
+      <h4 style="font-size:0.85em">"Burn"</h4>
+      <p class="text-small mb-0">Render vulnerable coins unspendable to preserve monetary integrity</p>
+    </div>
+    <div style="text-align:center;padding:1.2em;background:var(--warm-tan)">
+      <div style="font-size:2em;margin-bottom:0.3em">⚖️</div>
+      <h4 style="font-size:0.85em;color:var(--charcoal)">Do Nothing</h4>
+      <p class="text-small mb-0">Preserve property rights but risk quantum adversary seizure</p>
+    </div>
+  </div>
+
+  <div class="page-footer right-page">
+    <span class="footer-text">The Quantum Threat to Bitcoin</span>
+    <span class="footer-divider"></span>
+    <span class="footer-num">11</span>
+  </div>
+</div>
+
+<!-- ===== PAGE 12: CLOSING ===== -->
+<div class="page content-page page-break">
+  <h4>Conclusion</h4>
+  <h2>The Path Forward</h2>
+  <hr class="orange-rule">
+
+  <div class="two-col">
+    <div>
+      <p>The quantum threat to Bitcoin is not imminent — but it is real. The shifting expert consensus at the Presidio summit, where uncertainty dropped from 25% to just 8%, signals that the Bitcoin community must begin preparing now.</p>
+
+      <p>The stakes are uniquely high for human rights defenders. Bitcoin is more than a financial instrument for dissidents — it is often their only tool for receiving funds, preserving savings, and transacting freely under authoritarian surveillance. A quantum-compromised Bitcoin would strip this protection from the people who need it most.</p>
+
+      <p>The solutions exist. Quantum-resistant signature schemes offer viable paths forward. BIP 360 provides a flexible, scheme-agnostic framework. But implementation demands something harder than cryptography: <strong>social consensus</strong> in a decentralized ecosystem where every change is debated, tested, and voluntarily adopted.</p>
+    </div>
+    <div>
+      <p>The Bitcoin community faces difficult trade-offs. Larger signatures mean fewer transactions per block. Migration requires global user education. The burn-or-steal dilemma forces philosophical questions about property, immutability, and collective action.</p>
+
+      <p>These are not just engineering challenges. They are questions about the kind of financial system the world builds — one that either preserves freedom or leaves it vulnerable to the most powerful adversaries.</p>
+
+      <div style="background:var(--black);color:#fff;padding:1.4em;margin-top:1.2em">
+        <p style="font-family:var(--serif);font-style:italic;font-size:1.15em;line-height:1.55;margin-bottom:0.5em;color:#fff">Above all, a soft fork must remain faithful to Bitcoin's underlying principles: privacy, decentralization, and freedom from coercion.</p>
+        <p style="font-size:0.8em;color:var(--orange);margin:0;font-weight:600">Anything less risks the financial freedom of the dissidents and human rights defenders who need Bitcoin the most.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="orange-rule-thin" style="margin-top:2em">
+
+  <div style="text-align:center;margin-top:1.2em">
+    <img src="financial-freedom-logo.jpg" alt="Financial Freedom" style="height:50px;margin-bottom:0.6em">
+    <p class="text-small text-gray" style="max-width:70%;margin:0 auto">The Human Rights Foundation is a nonpartisan, nonprofit organization that promotes and protects human rights globally, with a focus on closed societies. HRF's Financial Freedom program supports the expansion of Bitcoin as a tool for activists facing financial repression.</p>
+    <p class="text-small mt-1"><a href="https://hrf.org" style="color:var(--orange);text-decoration:none;font-weight:600">hrf.org</a></p>
+  </div>
+
+  <div class="page-footer left-page">
+    <span class="footer-num">12</span>
+    <span class="footer-divider"></span>
+    <span class="footer-text">Financial Freedom</span>
+  </div>
+</div>
+
+<!-- ===== PAGE 13: SIGNATURE COMPARISON (REFERENCE) ===== -->
+<div class="page content-page page-break">
+  <h4>Technical Reference</h4>
+  <h2>Quantum-Resistant Signature Comparison</h2>
+  <hr class="orange-rule">
+
+  <table class="comparison-table">
+    <thead><tr><th>Property</th><th>Lattice-Based</th><th>Hash-Based</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Examples</strong></td><td>CRYSTALS-Dilithium 44, FALCON 512</td><td>SPHINCS+, XMSS, Lamport</td></tr>
+      <tr><td><strong>Signature Size</strong></td><td>~10× current standard</td><td>~38× current standard</td></tr>
+      <tr><td><strong>Maturity</strong></td><td>Newer; assumptions need vetting</td><td>Most mature post-quantum option</td></tr>
+      <tr><td><strong>Multisig Support</strong></td><td>Easier to implement</td><td>More complex</td></tr>
+      <tr><td><strong>Key Aggregation</strong></td><td>Supported</td><td>Complex to implement</td></tr>
+      <tr><td><strong>Deterministic Derivation</strong></td><td>Supported</td><td>Limited</td></tr>
+      <tr><td><strong>Human Rights Use Case</strong></td><td>Better for multisig donations and collaborative custody</td><td>Proven security for high-value storage</td></tr>
+    </tbody>
+  </table>
+
+  <div class="chart-source">Source: Bitcoin and Quantum Computing: Current Status and Future Directions by Chaincode Labs</div>
+
+  <hr class="orange-rule-thin">
+
+  <div class="chart-container">
+    <div class="chart-title">Signature Size Increase — Quantum-Resistant vs. Current</div>
+    <svg viewBox="0 0 460 100" style="max-width:100%;height:auto">
+      <text x="10" y="18" font-family="Source Sans 3,sans-serif" font-size="9" fill="#888" font-weight="700">CURRENT (ECDSA / Schnorr)</text>
+      <rect x="10" y="24" width="28" height="18" fill="#333" rx="2"/>
+      <text x="44" y="37" font-family="Source Sans 3,sans-serif" font-size="10" fill="#888">1×</text>
+      <text x="10" y="62" font-family="Source Sans 3,sans-serif" font-size="9" fill="#888" font-weight="700">LATTICE-BASED</text>
+      <rect x="10" y="68" width="280" height="18" fill="#E8792B" rx="2"/>
+      <text x="298" y="81" font-family="Source Sans 3,sans-serif" font-size="10" fill="#E8792B" font-weight="700">10× larger</text>
+      <text x="10" y="100" font-family="Source Sans 3,sans-serif" font-size="9" fill="#888" font-weight="700">HASH-BASED ▸ 38× (extends beyond chart)</text>
+    </svg>
+  </div>
+
+  <div class="stat-row avoid-break">
+    <div class="stat-block">
+      <div class="stat-number">6.51M</div>
+      <div class="stat-label">Bitcoin vulnerable to long-range quantum attacks</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-number">$718B+</div>
+      <div class="stat-label">Total value at risk — nearly one-third of supply</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-number">1.72M</div>
+      <div class="stat-label">Dormant bitcoin — no migration possible</div>
+    </div>
+  </div>
+
+  <div class="page-footer right-page">
+    <span class="footer-text">The Quantum Threat to Bitcoin</span>
+    <span class="footer-divider"></span>
+    <span class="footer-num">13</span>
+  </div>
+</div>
+
+</body>
+</html>
