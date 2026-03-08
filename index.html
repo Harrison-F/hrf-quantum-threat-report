@@ -15,8 +15,8 @@
 
 <!-- pdf.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.9.155/pdf.min.mjs" type="module"></script>
-<!-- StPageFlip -->
-<script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
+<!-- StPageFlip (local bundle — no CDN dependency) -->
+<script src="page-flip.browser.js"></script>
 
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -483,12 +483,14 @@
     });
 
   } catch (err) {
-    // Show error instead of infinite spinner
     console.error('Flipbook error:', err);
-    progressEl.textContent = 'Error loading flipbook. Opening PDF directly…';
-    setTimeout(() => {
-      window.location.href = 'quantum-threat-report.pdf';
-    }, 2000);
+    document.querySelector('.loading-text').textContent = 'Error loading flipbook';
+    progressEl.textContent = err.message || String(err);
+    // Show a link instead of auto-redirect (helps debugging)
+    const linkDiv = document.createElement('div');
+    linkDiv.style.cssText = 'margin-top:16px;text-align:center';
+    linkDiv.innerHTML = '<a href="quantum-threat-report.pdf" style="color:#E8792B;font-size:14px;text-decoration:underline">Open PDF directly</a> · <a href="report.html" style="color:#E8792B;font-size:14px;text-decoration:underline;margin-left:12px">Open HTML report</a>';
+    progressEl.parentElement.appendChild(linkDiv);
   }
 </script>
 
