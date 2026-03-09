@@ -27,20 +27,34 @@
 html{font-size:10.5pt}
 body{font-family:var(--sans);color:var(--black);line-height:1.45;background:var(--white)}
 
-/* === PRINT === */
-@page{size:letter portrait;margin:0.55in 0.55in 0.5in 0.55in}
+/* === PAGE SYSTEM ===
+   Each .page div IS the full 8.5×11" page with built-in padding.
+   @page has zero margins — all spacing is in the div itself.
+   This makes flex layout work identically in screen and print:
+   footer margin-top:auto always pushes to page bottom. */
+@page{size:letter portrait;margin:0}
+.page{
+  width:8.5in;
+  height:11in;
+  padding:0.55in 0.55in 0.5in 0.55in;
+  display:flex;
+  flex-direction:column;
+  background:var(--white);
+  overflow:hidden;
+}
+.page.cover,.page.full-img{padding:0}
 @media print{
   body{background:#fff}
   .page-break{page-break-before:always}
+  .page{page-break-after:always}
+  .page:last-child{page-break-after:auto}
   h2,h3{page-break-after:avoid}
   .no-break{page-break-inside:avoid}
   p{orphans:3;widows:3}
 }
 @media screen{
   body{background:#bbb}
-  .page{width:8.5in;min-height:11in;margin:0.3in auto;padding:0.55in;background:#fff;box-shadow:0 1px 10px rgba(0,0,0,.12)}
-  .page.cover{padding:0}
-  .page.full-img{padding:0}
+  .page{margin:0.3in auto;box-shadow:0 1px 10px rgba(0,0,0,.12)}
 }
 
 /* === TYPOGRAPHY === */
@@ -64,8 +78,7 @@ strong{font-weight:700}
 
 /* === HERO IMAGE === */
 .full-img{position:relative;overflow:hidden}
-.full-img img{width:100%;height:100%;object-fit:cover;display:block}
-@media screen{.full-img img{min-height:11in}}
+.full-img img{width:100%;height:11in;object-fit:cover;display:block}
 
 /* === TOC === */
 .toc-head{font-family:var(--serif);font-style:italic;font-size:2em;color:var(--orange);margin-bottom:0.65em;font-weight:400}
@@ -177,7 +190,7 @@ strong{font-weight:700}
 </div>
 
 <!-- ============ PAGE 3: TABLE OF CONTENTS ============ -->
-<div class="page page-break" style="display:flex;flex-direction:column">
+<div class="page page-break">
   <div style="padding-top:1in">
     <div class="toc-head">Table of Contents</div>
     <div class="toc-cols">
@@ -203,7 +216,7 @@ strong{font-weight:700}
 </div>
 
 <!-- ============ PAGE 4: EXECUTIVE SUMMARY ============ -->
-<div class="page page-break" style="display:flex;flex-direction:column">
+<div class="page page-break">
   <span class="kicker">Executive Summary</span>
   <h2>A Human Rights Imperative</h2>
   <div class="rule"></div>
@@ -236,7 +249,7 @@ strong{font-weight:700}
 </div>
 
 <!-- ============ PAGE 5: BITCOIN AS HUMAN RIGHTS TOOL ============ -->
-<div class="page page-break" style="display:flex;flex-direction:column">
+<div class="page page-break">
   <span class="kicker">Context</span>
   <h2>Bitcoin as a Human Rights Tool</h2>
   <div class="rule"></div>
@@ -269,7 +282,7 @@ strong{font-weight:700}
 </div>
 
 <!-- ============ PAGE 6: QUANTUM COMPUTING STATE ============ -->
-<div class="page page-break" style="display:flex;flex-direction:column">
+<div class="page page-break">
   <span class="kicker">Technical Landscape</span>
   <h2>The Current State of Quantum Computing</h2>
   <div class="rule"></div>
@@ -313,7 +326,7 @@ strong{font-weight:700}
 </div>
 
 <!-- ============ PAGE 7: THREAT VECTORS ============ -->
-<div class="page page-break" style="display:flex;flex-direction:column">
+<div class="page page-break">
   <span class="kicker">Threat Analysis</span>
   <h2>Bitcoin's Quantum Threat Vectors</h2>
   <div class="rule"></div>
@@ -364,7 +377,7 @@ strong{font-weight:700}
 </div>
 
 <!-- ============ PAGE 8: PREPARING BITCOIN ============ -->
-<div class="page page-break" style="display:flex;flex-direction:column">
+<div class="page page-break">
   <span class="kicker">Solutions</span>
   <h2>Preparing Bitcoin for the Quantum Era</h2>
   <div class="rule"></div>
@@ -404,7 +417,7 @@ strong{font-weight:700}
 </div>
 
 <!-- ============ PAGE 9: EDUCATION & CONSENSUS ============ -->
-<div class="page page-break" style="display:flex;flex-direction:column">
+<div class="page page-break">
   <span class="kicker">Implementation</span>
   <h2>Upgrades to Education &amp; Design</h2>
   <div class="rule"></div>
@@ -436,7 +449,7 @@ strong{font-weight:700}
 </div>
 
 <!-- ============ PAGE 10: BURN/STEAL + CONCLUSION ============ -->
-<div class="page page-break" style="display:flex;flex-direction:column">
+<div class="page page-break">
   <span class="kicker">The Dilemma</span>
   <h2>Burn, Steal, Hourglass</h2>
   <div class="rule"></div>
@@ -489,7 +502,7 @@ strong{font-weight:700}
 </div>
 
 <!-- ============ PAGE 11: TECHNICAL REFERENCE ============ -->
-<div class="page page-break" style="display:flex;flex-direction:column">
+<div class="page page-break">
   <span class="kicker">Technical Reference</span>
   <h2>Quantum-Resistant Signature Comparison</h2>
   <div class="rule"></div>
