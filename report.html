@@ -28,7 +28,7 @@
   --gilroy:'Plus Jakarta Sans','Gilroy',-apple-system,sans-serif;
   --body:'Crimson Pro',Georgia,serif;
 }
-html{font-size:10.5pt}
+html{font-size:11.5pt}
 body{font-family:var(--body);color:var(--black);line-height:1.6;background:var(--white)}
 
 /* === PAGE SYSTEM ===
@@ -69,7 +69,9 @@ strong{font-weight:700}
 .rule-thin{width:100%;height:1px;background:var(--orange);opacity:0.25;margin:1em 0}
 
 /* === COVER === */
-.cover{position:relative;overflow:hidden;background:var(--orange);color:#fff;display:flex;flex-direction:column;justify-content:flex-end}
+.cover{position:relative;overflow:hidden;background:#111;color:#fff;display:flex;flex-direction:column;justify-content:flex-end}
+.cover-bg{position:absolute;inset:0;background:url('https://hrf.org/wp-content/uploads/2025/10/Latest-Thumbnail-The-Quantum-Threat-to-Bitcoin-V1.png') center/cover no-repeat;opacity:0.5}
+.cover-overlay{position:absolute;inset:0;background:linear-gradient(155deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,.2) 50%,rgba(0,0,0,.5) 100%)}
 .cover-inner{position:relative;z-index:2;padding:0 48px 48px}
 .cover-title{font-family:var(--gilroy);font-weight:900;font-size:3.8em;line-height:1.06;color:#fff;margin-bottom:0.12em}
 .cover-sub{font-size:1.05em;color:#fff;line-height:1.5;max-width:75%;font-weight:400}
@@ -184,6 +186,8 @@ strong{font-weight:700}
 
 <!-- ============ PAGE 1: COVER ============ -->
 <div class="page cover">
+  <div class="cover-bg"></div>
+  <div class="cover-overlay"></div>
   <div class="cover-inner">
     <div class="rule" style="opacity:0.5;margin-bottom:1em"></div>
     <div class="cover-title">The Quantum<br>Threat to<br>Bitcoin</div>
